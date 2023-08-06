@@ -7,19 +7,20 @@ import CardMedia from "@mui/material/CardMedia";
 import CardContent from "@mui/material/CardContent";
 import Stack from "@mui/material/Stack";
 
-import { PropertyCardProps } from "interfaces/property";
+import { ClientCardProps } from "interfaces/client";
 
-const PropertyCard = ({
+const ClientCard = ({
     id,
-    title,
-    location,
-    price,
-    photo,
-}: PropertyCardProps) => {
+    name,
+    email,
+    phone,
+    origin,
+    preferences,
+}: ClientCardProps) => {
     return (
         <Card
             component={Link}
-            to={`/properties/show/${id}`}
+            to={`/client/show/${id}`}
             sx={{
                 maxWidth: "330px",
                 padding: "10px",
@@ -30,14 +31,6 @@ const PropertyCard = ({
             }}
             elevation={0}
         >
-            <CardMedia
-                component="img"
-                width="100%"
-                height={210}
-                image={photo}
-                alt="card image"
-                sx={{ borderRadius: "10px" }}
-            />
             <CardContent
                 sx={{
                     display: "flex",
@@ -49,7 +42,7 @@ const PropertyCard = ({
             >
                 <Stack direction="column" gap={1}>
                     <Typography fontSize={16} fontWeight={500} color="#11142d">
-                        {title}
+                        {name}
                     </Typography>
                     <Stack direction="row" gap={0.5} alignItems="flex-start">
                         <Place
@@ -60,7 +53,7 @@ const PropertyCard = ({
                             }}
                         />
                         <Typography fontSize={14} color="#808191">
-                            {location}
+                            {email}
                         </Typography>
                     </Stack>
                 </Stack>
@@ -72,7 +65,18 @@ const PropertyCard = ({
                     height="fit-content"
                 >
                     <Typography fontSize={12} fontWeight={600} color="#475be8">
-                        ${price}
+                        {phone}
+                    </Typography>
+                </Box>
+                <Box
+                    px={1.5}
+                    py={0.5}
+                    borderRadius={1}
+                    bgcolor="#dadefa"
+                    height="fit-content"
+                >
+                    <Typography fontSize={12} fontWeight={600} color="#475be8">
+                        {origin}
                     </Typography>
                 </Box>
             </CardContent>
@@ -80,4 +84,4 @@ const PropertyCard = ({
     );
 };
 
-export default PropertyCard;
+export default ClientCard;

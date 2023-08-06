@@ -15,8 +15,8 @@ const AgentProfile = () => {
 
     const myProfile = data?.data ?? [];
 
-    if (isLoading) return <div>loading...</div>;
-    if (isError) return <div>error...</div>;
+    if (isLoading) return <div>Carregando...</div>;
+    if (isError) return <div>erro...</div>;
 
     return (
         <Profile
@@ -24,7 +24,7 @@ const AgentProfile = () => {
             name={myProfile.name}
             email={myProfile.email}
             avatar={myProfile.avatar}
-            properties={myProfile.allProperties}
+            tours={myProfile.allTours}
         />
     );
 };

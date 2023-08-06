@@ -1,7 +1,9 @@
 // common
 import Profile from "./common/Profile";
-import PropertyCard from "./common/PropertyCard";
+import TourCard from "./common/TourCard";
+import ClientCard from "./common/ClientCard";
 import CustomButton from "./common/CustomButton";
+import ReservationCard from "./common/ReservationCard";
 
 // charts
 import PieChart from "./charts/PieChart";
@@ -16,11 +18,13 @@ import TopAgent from "./home/TopAgent";
 
 export {
     Profile,
-    PropertyCard,
+    TourCard,
+    ClientCard,
     CustomButton,
     PieChart,
     PropertyReferrals,
     TotalRevenue,
     AgentCard,
     TopAgent,
+    ReservationCard
 };

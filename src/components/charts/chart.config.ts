@@ -2,11 +2,11 @@ import { ApexOptions } from "apexcharts";
 
 export const TotalRevenueSeries = [
     {
-        name: "Last Month",
+        name: "Último mês",
         data: [183, 124, 115, 85, 143, 143, 96],
     },
     {
-        name: "Running Month",
+        name: "Mês atual",
         data: [95, 84, 72, 44, 108, 108, 47],
     },
 ];

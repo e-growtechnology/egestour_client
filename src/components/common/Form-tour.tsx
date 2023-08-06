@@ -2,7 +2,6 @@ import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import FormControl from "@mui/material/FormControl";
 import FormHelperText from "@mui/material/FormHelperText";
-import TextField from "@mui/material/TextField";
 import TextareaAutosize from "@mui/material/TextareaAutosize";
 import Stack from "@mui/material/Stack";
 import Select from "@mui/material/Select";
@@ -19,12 +18,12 @@ const Form = ({
     handleImageChange,
     formLoading,
     onFinishHandler,
-    propertyImage,
+    tourImage,
 }: FormProps) => {
     return (
         <Box>
-            <Typography fontSize={25} fontWeight={700} color="#11142d">
-                {type} a Property
+            <Typography fontSize={25} fontWeight={700} color="#FFFFFF">
+                {type} a Tour
             </Typography>
 
             <Box mt={2.5} borderRadius="15px" padding="20px" bgcolor="#fcfcfc">
@@ -47,14 +46,22 @@ const Form = ({
                                 color: "#11142d",
                             }}
                         >
-                            Enter property name
+                            Nome do tour
                         </FormHelperText>
-                        <TextField
-                            fullWidth
+                        <TextareaAutosize
+                            minRows={1}
                             required
-                            id="outlined-basic"
+                            placeholder="Escreva o nome do passeio"
                             color="info"
-                            variant="outlined"
+                            style={{
+                                width: "100%",
+                                background: "transparent",
+                                fontSize: "16px",
+                                borderColor: "rgba(0,0,0,0.23)",
+                                borderRadius: 6,
+                                padding: 10,
+                                color: "#919191",
+                            }}
                             {...register("title", { required: true })}
                         />
                     </FormControl>
@@ -67,12 +74,12 @@ const Form = ({
                                 color: "#11142d",
                             }}
                         >
-                            Enter Description
+                            Descrição
                         </FormHelperText>
                         <TextareaAutosize
                             minRows={5}
                             required
-                            placeholder="Write description"
+                            placeholder="Escreva a descrição do passeio"
                             color="info"
                             style={{
                                 width: "100%",
@@ -86,6 +93,34 @@ const Form = ({
                             {...register("description", { required: true })}
                         />
                     </FormControl>
+                    <FormControl>
+                        <FormHelperText
+                            sx={{
+                                fontWeight: 500,
+                                margin: "10px 0",
+                                fontSize: 16,
+                                color: "#11142d",
+                            }}
+                        >
+                            Orientações
+                        </FormHelperText>
+                        <TextareaAutosize
+                            minRows={5}
+                            required
+                            placeholder="Escreva as orientações do passeio"
+                            color="info"
+                            style={{
+                                width: "100%",
+                                background: "transparent",
+                                fontSize: "16px",
+                                borderColor: "rgba(0,0,0,0.23)",
+                                borderRadius: 6,
+                                padding: 10,
+                                color: "#919191",
+                            }}
+                            {...register("orientation", { required: true })}
+                        />
+                    </FormControl>
 
                     <Stack direction="row" gap={4}>
                         <FormControl sx={{ flex: 1 }}>
@@ -97,27 +132,33 @@ const Form = ({
                                     color: "#11142d",
                                 }}
                             >
-                                Select Property Type
+                                Selecione o tipo de passeio
                             </FormHelperText>
                             <Select
                                 variant="outlined"
                                 color="info"
+                                style={{
+                                    width: "100%",
+                                    background: "transparent",
+                                    fontSize: "16px",
+                                    borderColor: "rgba(0,0,0,0.23)",
+                                    borderRadius: 6,
+                                    padding: 10,
+                                    color: "#919191",
+                                }}
                                 displayEmpty
                                 required
                                 inputProps={{ "aria-label": "Without label" }}
-                                defaultValue="apartment"
-                                {...register("propertyType", {
+                                defaultValue="barco"
+                                {...register("tourType", {
                                     required: true,
                                 })}
                             >
-                                <MenuItem value="apartment">Apartment</MenuItem>
-                                <MenuItem value="villa">Villa</MenuItem>
-                                <MenuItem value="farmhouse">farmhouse</MenuItem>
-                                <MenuItem value="condos">Condos</MenuItem>
-                                <MenuItem value="townhouse">Townhouse</MenuItem>
-                                <MenuItem value="duplex">Duplex</MenuItem>
-                                <MenuItem value="studio">Studio</MenuItem>
-                                <MenuItem value="chalet">Chalet</MenuItem>
+                                <MenuItem value="barco">Barco</MenuItem>
+                                <MenuItem value="bugre">Bugre</MenuItem>
+                                <MenuItem value="jetski">Jetski</MenuItem>
+                                <MenuItem value="lancha">Lancha</MenuItem>
+                                <MenuItem value="quadriciclo">Quadriciclo</MenuItem>
                             </Select>
                         </FormControl>
                         <FormControl>
@@ -129,19 +170,64 @@ const Form = ({
                                     color: "#11142d",
                                 }}
                             >
-                                Enter property price
+                                Valor unitário
                             </FormHelperText>
-                            <TextField
-                                fullWidth
-                                required
-                                id="outlined-basic"
-                                color="info"
-                                type="number"
-                                variant="outlined"
+                            <TextareaAutosize
+                            minRows={1}
+                            required
+                            color="info"
+                            type="number"
+                            style={{
+                                width: "100%",
+                                background: "transparent",
+                                fontSize: "16px",
+                                borderColor: "rgba(0,0,0,0.23)",
+                                borderRadius: 6,
+                                padding: 10,
+                                color: "#919191",
+                            }}
                                 {...register("price", { required: true })}
                             />
                         </FormControl>
                     </Stack>
+
+                    <FormControl sx={{ flex: 1 }}>
+                            <FormHelperText
+                                sx={{
+                                    fontWeight: 500,
+                                    margin: "10px 0",
+                                    fontSize: 16,
+                                    color: "#11142d",
+                                }}
+                            >
+                                Selecione os extras do passeio
+                            </FormHelperText>
+                            <Select
+                                variant="outlined"
+                                color="info"
+                                style={{
+                                    width: "100%",
+                                    background: "transparent",
+                                    fontSize: "16px",
+                                    borderColor: "rgba(0,0,0,0.23)",
+                                    borderRadius: 6,
+                                    padding: 10,
+                                    color: "#919191",
+                                }}
+                                displayEmpty
+                                required
+                                inputProps={{ "aria-label": "Without label" }}
+                                defaultValue="bebidas"
+                                {...register("extras", {
+                                    required: false,
+                                })}
+                            >
+                                <MenuItem value="bebidas">Bebidas</MenuItem>
+                                <MenuItem value="comidas">Comidas</MenuItem>
+                                <MenuItem value="fotografo">Fotógrafo</MenuItem>
+                                <MenuItem value="musica">Música</MenuItem>
+                            </Select>
+                        </FormControl>
 
                     <FormControl>
                         <FormHelperText
@@ -152,14 +238,22 @@ const Form = ({
                                 color: "#11142d",
                             }}
                         >
-                            Enter Location
+                            Localização
                         </FormHelperText>
-                        <TextField
-                            fullWidth
+                        <TextareaAutosize
+                            minRows={1}
                             required
-                            id="outlined-basic"
+                            placeholder="Onde acontece o passeio"
                             color="info"
-                            variant="outlined"
+                            style={{
+                                width: "100%",
+                                background: "transparent",
+                                fontSize: "16px",
+                                borderColor: "rgba(0,0,0,0.23)",
+                                borderRadius: 6,
+                                padding: 10,
+                                color: "#919191",
+                            }}
                             {...register("location", { required: true })}
                         />
                     </FormControl>
@@ -177,7 +271,7 @@ const Form = ({
                                 fontWeight={500}
                                 my="10px"
                             >
-                                Property Photo
+                                Foto do passeio
                             </Typography>
 
                             <Button
@@ -207,13 +301,13 @@ const Form = ({
                             color="#808191"
                             sx={{ wordBreak: "break-all" }}
                         >
-                            {propertyImage?.name}
+                            {tourImage?.name}
                         </Typography>
                     </Stack>
 
                     <CustomButton
                         type="submit"
-                        title={formLoading ? "Submitting..." : "Submit"}
+                        title={formLoading ? "Enviando..." : "Enviar"}
                         backgroundColor="#475be8"
                         color="#fcfcfc"
                     />

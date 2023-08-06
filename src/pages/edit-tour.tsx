@@ -1,16 +1,14 @@
 import { useState } from "react";
 import { useGetIdentity } from "@refinedev/core";
 import { useForm } from "@refinedev/react-hook-form";
-
 import { FieldValues } from "react-hook-form";
+import Form from "components/common/Form-tour";
 
-import Form from "components/common/Form";
-
-const CreateProperty = () => {
+const CreateTour = () => {
     const { data: user } = useGetIdentity({
         v3LegacyAuthProviderCompatible: true,
     });
-    const [propertyImage, setPropertyImage] = useState({ name: "", url: "" });
+    const [tourImage, setTourImage] = useState({ name: "", url: "" });
     const {
         refineCore: { onFinish, formLoading },
         register,
@@ -26,31 +24,32 @@ const CreateProperty = () => {
             });
 
         reader(file).then((result: string) =>
-            setPropertyImage({ name: file?.name, url: result }),
+            setTourImage({ name: file?.name, url: result }),
         );
     };
 
     const onFinishHandler = async (data: FieldValues) => {
-        if (!propertyImage.name) return alert("Please select an image");
+        if (!tourImage.name) return alert("Por favor, selecione uma imagem");
 
         await onFinish({
             ...data,
-            photo: propertyImage.url,
+            photo: tourImage.url,
             email: user.email,
         });
     };
 
     return (
         <Form
-            type="Create"
+            type="Edit"
             register={register}
             onFinish={onFinish}
             formLoading={formLoading}
             handleSubmit={handleSubmit}
             handleImageChange={handleImageChange}
             onFinishHandler={onFinishHandler}
-            propertyImage={propertyImage}
+            tourImage={tourImage}
         />
     );
 };
-export default CreateProperty;
+
+export default CreateTour;

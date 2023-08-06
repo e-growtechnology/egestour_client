@@ -9,9 +9,9 @@ import MenuItem from "@mui/material/MenuItem";
 import { useNavigate } from "react-router-dom";
 import { useMemo } from "react";
 
-import { PropertyCard, CustomButton } from "components";
+import { ClientCard, CustomButton } from "components";
 
-const AllProperties = () => {
+const AllClients = () => {
     const navigate = useNavigate();
 
     const {
@@ -26,12 +26,12 @@ const AllProperties = () => {
         setFilters,
     } = useTable();
 
-    const allProperties = data?.data ?? [];
+    const allClients = data?.data ?? [];
 
-    const currentPrice = sorter.find((item) => item.field === "price")?.order;
+    const currentName = sorter.find((item) => item.field === "name")?.order;
 
     const toggleSort = (field: string) => {
-        setSorter([{ field, order: currentPrice === "asc" ? "desc" : "asc" }]);
+        setSorter([{ field, order: currentName === "asc" ? "desc" : "asc" }]);
     };
 
     const currentFilterValues = useMemo(() => {
@@ -40,26 +40,26 @@ const AllProperties = () => {
         );
 
         return {
-            title:
-                logicalFilters.find((item) => item.field === "title")?.value ||
+            name:
+                logicalFilters.find((item) => item.field === "name")?.value ||
                 "",
-            propertyType:
-                logicalFilters.find((item) => item.field === "propertyType")
+            email:
+                logicalFilters.find((item) => item.field === "email")
                     ?.value || "",
         };
     }, [filters]);
 
-    if (isLoading) return <Typography>Loading...</Typography>;
-    if (isError) return <Typography>Error...</Typography>;
+    if (isLoading) return <Typography>Carregando...</Typography>;
+    if (isError) return <Typography>Erro...</Typography>;
 
     return (
         <Box>
             <Box mt="20px" sx={{ display: "flex", flexWrap: "wrap", gap: 3 }}>
                 <Stack direction="column" width="100%">
-                    <Typography fontSize={25} fontWeight={700} color="#11142d">
-                        {!allProperties.length
-                            ? "There are no properties"
-                            : "All Properties"}
+                    <Typography fontSize={25} fontWeight={700} color="#FFFFFF">
+                        {!allClients.length
+                            ? "Não há clientes"
+                            : "Todos os clientes"}
                     </Typography>
                     <Box
                         mb={2}
@@ -76,22 +76,22 @@ const AllProperties = () => {
                             mb={{ xs: "20px", sm: 0 }}
                         >
                             <CustomButton
-                                title={`Sort price ${
-                                    currentPrice === "asc" ? "↑" : "↓"
+                                title={`Ordenar valor ${
+                                    currentName === "asc" ? "↑" : "↓"
                                 }`}
-                                handleClick={() => toggleSort("price")}
+                                handleClick={() => toggleSort("name")}
                                 backgroundColor="#475be8"
                                 color="#fcfcfc"
                             />
                             <TextField
                                 variant="outlined"
                                 color="info"
-                                placeholder="Search by title"
-                                value={currentFilterValues.title}
+                                placeholder="Buscar por nome"
+                                value={currentFilterValues.name}
                                 onChange={(e) => {
                                     setFilters([
                                         {
-                                            field: "title",
+                                            field: "name",
                                             operator: "contains",
                                             value: e.currentTarget.value
                                                 ? e.currentTarget.value
@@ -107,12 +107,12 @@ const AllProperties = () => {
                                 required
                                 inputProps={{ "aria-label": "Without label" }}
                                 defaultValue=""
-                                value={currentFilterValues.propertyType}
+                                value={currentFilterValues.email}
                                 onChange={(e) => {
                                     setFilters(
                                         [
                                             {
-                                                field: "propertyType",
+                                                field: "email",
                                                 operator: "eq",
                                                 value: e.target.value,
                                             },
@@ -121,22 +121,18 @@ const AllProperties = () => {
                                     );
                                 }}
                             >
-                                <MenuItem value="">All</MenuItem>
+                                <MenuItem value="">Todos</MenuItem>
                                 {[
-                                    "Apartment",
-                                    "Villa",
-                                    "Farmhouse",
-                                    "Condos",
-                                    "Townhouse",
-                                    "Duplex",
-                                    "Studio",
-                                    "Chalet",
-                                ].map((type) => (
+                                    "Facebook",
+                                    "Instagram",
+                                    "Whatsapp",
+                                    "Prospect",
+                                ].map((origin) => (
                                     <MenuItem
-                                        key={type}
-                                        value={type.toLowerCase()}
+                                        key={origin}
+                                        value={origin.toLowerCase()}
                                     >
-                                        {type}
+                                        {origin}
                                     </MenuItem>
                                 ))}
                             </Select>
@@ -151,8 +147,8 @@ const AllProperties = () => {
                 alignItems="center"
             >
                 <CustomButton
-                    title="Add Property"
-                    handleClick={() => navigate("/properties/create")}
+                    title="Adicionar Cliente"
+                    handleClick={() => navigate("/clients/create")}
                     backgroundColor="#475be8"
                     color="#fcfcfc"
                     icon={<Add />}
@@ -160,19 +156,20 @@ const AllProperties = () => {
             </Stack>
 
             <Box mt="20px" sx={{ display: "flex", flexWrap: "wrap", gap: 3 }}>
-                {allProperties?.map((property) => (
-                    <PropertyCard
-                        key={property._id}
-                        id={property._id}
-                        title={property.title}
-                        location={property.location}
-                        price={property.price}
-                        photo={property.photo}
+                {allClients?.map((client) => (
+                    <ClientCard
+                        key={client._id}
+                        id={client._id}
+                        name={client.name}
+                        email={client.email}
+                        origin={client.origin}
+                        phone={client.phone}
+                        preferences={client.preferences}
                     />
                 ))}
             </Box>
 
-            {allProperties.length > 0 && (
+            {allClients.length > 0 && (
                 <Box display="flex" gap={2} mt={3} flexWrap="wrap">
                     <CustomButton
                         title="Previous"
@@ -213,7 +210,7 @@ const AllProperties = () => {
                     >
                         {[10, 20, 30, 40, 50].map((size) => (
                             <MenuItem key={size} value={size}>
-                                Show {size}
+                                Mostrar {size}
                             </MenuItem>
                         ))}
                     </Select>
@@ -223,4 +220,4 @@ const AllProperties = () => {
     );
 };
 
-export default AllProperties;
+export default AllClients;

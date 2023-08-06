@@ -3,7 +3,7 @@ import { useLogin } from "@refinedev/core";
 import Container from "@mui/material/Container";
 import Box from "@mui/material/Box";
 
-import { yariga } from "../assets";
+import { logo } from "../assets";
 
 import { CredentialResponse } from "../interfaces/google";
 
@@ -42,13 +42,13 @@ export const Login: React.FC = () => {
             } catch (error) {
                 console.log(error);
             }
-        }, []); // you can also add your client id as dependency here
+        }, []); 
 
         return <div ref={divRef} />;
     };
 
     return (
-        <Box component="div" sx={{ backgroundColor: "#FCFCFC" }}>
+        <Box component="div" sx={{ backgroundColor: "#002D2B" }}>
             <Container
                 component="main"
                 maxWidth="xs"
@@ -68,7 +68,7 @@ export const Login: React.FC = () => {
                     }}
                 >
                     <div>
-                        <img src={yariga} alt="Yariga Logo" />
+                        <img src={logo} alt="E-Gestour Logo" />
                     </div>
                     <Box mt={4}>
                         <GoogleButton />

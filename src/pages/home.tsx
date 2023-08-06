@@ -7,12 +7,12 @@ import {
     PieChart,
     PropertyReferrals,
     TotalRevenue,
-    PropertyCard,
+    TourCard,
 } from "components";
 
 const Home = () => {
     const { data, isLoading, isError } = useList({
-        resource: "properties",
+        resource: "tours",
         config: {
             pagination: {
                 pageSize: 4,
@@ -20,38 +20,38 @@ const Home = () => {
         },
     });
 
-    const latestProperties = data?.data ?? [];
+    const latestTours = data?.data ?? [];
 
-    if (isLoading) return <Typography>Loading...</Typography>;
-    if (isError) return <Typography>Something went wrong!</Typography>;
+    if (isLoading) return <Typography>Carregando...</Typography>;
+    if (isError) return <Typography>Algo deu errado!</Typography>;
 
     return (
         <Box>
-            <Typography fontSize={25} fontWeight={700} color="#11142D">
+            <Typography fontSize={25} fontWeight={700} color="#FFFFFF">
                 Dashboard
             </Typography>
 
             <Box mt="20px" display="flex" flexWrap="wrap" gap={4}>
                 <PieChart
-                    title="Properties for Sale"
+                    title="Tours ativos"
                     value={684}
                     series={[75, 25]}
                     colors={["#275be8", "#c4e8ef"]}
                 />
                 <PieChart
-                    title="Properties for Rent"
+                    title="Tours programados"
                     value={550}
                     series={[60, 40]}
                     colors={["#275be8", "#c4e8ef"]}
                 />
                 <PieChart
-                    title="Total customers"
+                    title="Total Clientes"
                     value={5684}
                     series={[75, 25]}
                     colors={["#275be8", "#c4e8ef"]}
                 />
                 <PieChart
-                    title="Properties for Cities"
+                    title="Tours por Localização"
                     value={555}
                     series={[75, 25]}
                     colors={["#275be8", "#c4e8ef"]}
@@ -79,21 +79,21 @@ const Home = () => {
                 mt="25px"
             >
                 <Typography fontSize="18px" fontWeight={600} color="#11142d">
-                    Latest Properties
+                    Últimos Passeios
                 </Typography>
 
                 <Box
                     mt={2.5}
                     sx={{ display: "flex", flexWrap: "wrap", gap: 4 }}
                 >
-                    {latestProperties.map((property) => (
-                        <PropertyCard
-                            key={property._id}
-                            id={property._id}
-                            title={property.title}
-                            location={property.location}
-                            price={property.price}
-                            photo={property.photo}
+                    {latestTours.map((tour) => (
+                        <TourCard
+                            key={tour._id}
+                            id={tour._id}
+                            title={tour.title}
+                            location={tour.location}
+                            price={tour.price}
+                            photo={tour.photo}
                         />
                     ))}
                 </Box>

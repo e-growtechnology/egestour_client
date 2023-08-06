@@ -18,7 +18,7 @@ function checkImage(url: any) {
     return img.width !== 0 && img.height !== 0;
 }
 
-const PropertyDetails = () => {
+const TourDetails = () => {
     const navigate = useNavigate();
     const { data: user } = useGetIdentity({
         v3LegacyAuthProviderCompatible: true,
@@ -29,31 +29,31 @@ const PropertyDetails = () => {
 
     const { data, isLoading, isError } = queryResult;
 
-    const propertyDetails = data?.data ?? {};
+    const tourDetails = data?.data ?? {};
 
     if (isLoading) {
-        return <div>Loading...</div>;
+        return <div>Carregando...</div>;
     }
 
     if (isError) {
-        return <div>Something went wrong!</div>;
+        return <div>Algo deu errado!</div>;
     }
 
-    const isCurrentUser = user.email === propertyDetails.creator.email;
+    const isCurrentUser = user.email === tourDetails.creator.email;
 
-    const handleDeleteProperty = () => {
+    const handleDeleteTour = () => {
         const response = confirm(
-            "Are you sure you want to delete this property?",
+            "Tem certeza que deseja deletar esse tour?",
         );
         if (response) {
             mutate(
                 {
-                    resource: "properties",
+                    resource: "tours",
                     id: id as string,
                 },
                 {
                     onSuccess: () => {
-                        navigate("/properties");
+                        navigate("/tours");
                     },
                 },
             );
@@ -68,7 +68,7 @@ const PropertyDetails = () => {
             width="fit-content"
         >
             <Typography fontSize={25} fontWeight={700} color="#11142D">
-                Details
+                Detalhes
             </Typography>
 
             <Box
@@ -79,7 +79,7 @@ const PropertyDetails = () => {
             >
                 <Box flex={1} maxWidth={764}>
                     <img
-                        src={propertyDetails.photo}
+                        src={tourDetails.photo}
                         alt="property_details-img"
                         height={546}
                         style={{ objectFit: "cover", borderRadius: "10px" }}
@@ -99,7 +99,7 @@ const PropertyDetails = () => {
                                 color="#11142D"
                                 textTransform="capitalize"
                             >
-                                {propertyDetails.propertyType}
+                                {tourDetails.tourType}
                             </Typography>
                             <Box>
                                 {[1, 2, 3, 4, 5].map((item) => (
@@ -125,7 +125,7 @@ const PropertyDetails = () => {
                                     mt="10px"
                                     color="#11142D"
                                 >
-                                    {propertyDetails.title}
+                                    {tourDetails.title}
                                 </Typography>
                                 <Stack
                                     mt={0.5}
@@ -135,7 +135,7 @@ const PropertyDetails = () => {
                                 >
                                     <Place sx={{ color: "#808191" }} />
                                     <Typography fontSize={14} color="#808191">
-                                        {propertyDetails.location}
+                                        {tourDetails.location}
                                     </Typography>
                                 </Stack>
                             </Box>
@@ -147,7 +147,7 @@ const PropertyDetails = () => {
                                     mt="10px"
                                     color="#11142D"
                                 >
-                                    Price
+                                    Valor
                                 </Typography>
                                 <Stack
                                     direction="row"
@@ -159,14 +159,14 @@ const PropertyDetails = () => {
                                         fontWeight={700}
                                         color="#475BE8"
                                     >
-                                        ${propertyDetails.price}
+                                        ${tourDetails.price}
                                     </Typography>
                                     <Typography
                                         fontSize={14}
                                         color="#808191"
                                         mb={0.5}
                                     >
-                                        for one day
+                                        por um dia
                                     </Typography>
                                 </Stack>
                             </Box>
@@ -174,10 +174,10 @@ const PropertyDetails = () => {
 
                         <Stack mt="25px" direction="column" gap="10px">
                             <Typography fontSize={18} color="#11142D">
-                                Description
+                                Descrição
                             </Typography>
                             <Typography fontSize={14} color="#808191">
-                                {propertyDetails.description}
+                                {tourDetails.description}
                             </Typography>
                         </Stack>
                     </Box>
@@ -208,8 +208,8 @@ const PropertyDetails = () => {
                         >
                             <img
                                 src={
-                                    checkImage(propertyDetails.creator.avatar)
-                                        ? propertyDetails.creator.avatar
+                                    checkImage(tourDetails.creator.avatar)
+                                        ? tourDetails.creator.avatar
                                         : "https://upload.wikimedia.org/wikipedia/commons/thumb/5/59/User-avatar.svg/2048px-User-avatar.svg.png"
                                 }
                                 alt="avatar"
@@ -227,7 +227,7 @@ const PropertyDetails = () => {
                                     fontWeight={600}
                                     color="#11142D"
                                 >
-                                    {propertyDetails.creator.name}
+                                    {tourDetails.creator.name}
                                 </Typography>
                                 <Typography
                                     mt="5px"
@@ -235,7 +235,7 @@ const PropertyDetails = () => {
                                     fontWeight={400}
                                     color="#808191"
                                 >
-                                    Agent
+                                    Agente
                                 </Typography>
                             </Box>
 
@@ -251,7 +251,7 @@ const PropertyDetails = () => {
                                     fontWeight={400}
                                     color="#808191"
                                 >
-                                    North Carolina, USA
+                                    Arraial do Cabo, RJ
                                 </Typography>
                             </Stack>
 
@@ -261,8 +261,8 @@ const PropertyDetails = () => {
                                 fontWeight={600}
                                 color="#11142D"
                             >
-                                {propertyDetails.creator.allProperties.length}{" "}
-                                Properties
+                                {tourDetails.creator.allTours.length}{" "}
+                                Tours
                             </Typography>
                         </Stack>
 
@@ -284,7 +284,7 @@ const PropertyDetails = () => {
                                 handleClick={() => {
                                     if (isCurrentUser) {
                                         navigate(
-                                            `/properties/edit/${propertyDetails._id}`,
+                                            `/tours/edit/${tourDetails._id}`,
                                         );
                                     }
                                 }}
@@ -298,7 +298,7 @@ const PropertyDetails = () => {
                                 fullWidth
                                 icon={!isCurrentUser ? <Phone /> : <Delete />}
                                 handleClick={() => {
-                                    if (isCurrentUser) handleDeleteProperty();
+                                    if (isCurrentUser) handleDeleteTour();
                                 }}
                             />
                         </Stack>
@@ -327,4 +327,4 @@ const PropertyDetails = () => {
     );
 };
 
-export default PropertyDetails;
+export default TourDetails;

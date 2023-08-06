@@ -1,6 +1,6 @@
 export const propertyReferralsInfo = [
     {
-        title: "Social Media",
+        title: "Mídias Sociais",
         percentage: 64,
         color: "#6C5DD3",
     },
@@ -15,12 +15,12 @@ export const propertyReferralsInfo = [
         color: "#FFCE73",
     },
     {
-        title: "Digital Ads",
+        title: "Anúncios",
         percentage: 80,
         color: "#FFA2C0",
     },
     {
-        title: "Others",
+        title: "Outros",
         percentage: 15,
         color: "#F45252",
     },
