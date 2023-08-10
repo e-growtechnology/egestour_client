@@ -18,7 +18,7 @@ const TotalRevenue = () => {
             borderRadius="15px"
         >
             <Typography fontSize={18} fontWeight={600} color="#11142d">
-                Receita total
+                Total Revenue
             </Typography>
 
             <Stack my="20px" direction="row" gap={4} flexWrap="wrap">
@@ -34,7 +34,7 @@ const TotalRevenue = () => {
                             0.8%
                         </Typography>
                         <Typography fontSize={12} color="#808191">
-                            que o último mês
+                            Than Last Month
                         </Typography>
                     </Stack>
                 </Stack>

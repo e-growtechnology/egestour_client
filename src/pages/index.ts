@@ -1,37 +1,21 @@
 import AgentProfile from "./agent-profile";
 import Agents from "./agent";
-import AllTours from "./all-tours";
-import CreateTour from "./create-tour";
+import AllProperties from "./all-properties";
+import CreateProperty from "./create-property";
 import Home from "./home";
 import { Login } from "./login";
 import MyProfile from "./my-profile";
-import TourDetails from "./tour-details";
-import EditTour from "./edit-tour";
-import AllClients from "./all-clients";
-import ClientDetails from "./client-details";
-import CreateClient from "./create-client";
-import EditClient from "./edit-client";
-import AllReservations from "./all-reservations";
-import ReservationDetails from "./reservation-details";
-import CreateReservation from "./create-reservation";
-import EditReservation from "./edit-reservation";
+import PropertyDetails from "./property-details";
+import EditProperty from "./edit-property";
 
 export {
     AgentProfile,
     Agents,
-    AllTours,
-    CreateTour,
+    AllProperties,
+    CreateProperty,
     Home,
     Login,
     MyProfile,
-    TourDetails,
-    EditTour,
-    AllClients,
-    ClientDetails,
-    CreateClient,
-    EditClient,
-    AllReservations,
-    ReservationDetails,
-    CreateReservation,
-    EditReservation
+    PropertyDetails,
+    EditProperty,
 };

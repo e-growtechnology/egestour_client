@@ -55,7 +55,7 @@ const PropertyReferrals = () => {
             borderRadius="15px"
         >
             <Typography fontSize={18} fontWeight={600} color="#11142d">
-                Origem de clientes
+                Property Referrals
             </Typography>
 
             <Stack my="20px" direction="column" gap={4}>

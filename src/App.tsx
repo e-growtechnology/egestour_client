@@ -1,6 +1,7 @@
 import React from "react";
 
 import {
+    GitHubBanner,
     Refine,
     LegacyAuthProvider as AuthProvider,
 } from "@refinedev/core";
@@ -16,8 +17,7 @@ import AccountCircleOutlined from "@mui/icons-material/AccountCircleOutlined";
 import ChatBubbleOutline from "@mui/icons-material/ChatBubbleOutline";
 import PeopleAltOutlined from "@mui/icons-material/PeopleAltOutlined";
 import StarOutlineRounded from "@mui/icons-material/StarOutlineRounded";
-import SailingOutlined from "@mui/icons-material/SailingOutlined";
-import ReceiptLongOutlined from "@mui/icons-material/ReceiptLongOutlined"
+import VillaOutlined from "@mui/icons-material/VillaOutlined";
 
 import dataProvider from "@refinedev/simple-rest";
 import routerProvider from "@refinedev/react-router-v6/legacy";
@@ -32,19 +32,11 @@ import {
     Home,
     Agents,
     MyProfile,
-    TourDetails,
-    AllTours,
-    CreateTour,
+    PropertyDetails,
+    AllProperties,
+    CreateProperty,
     AgentProfile,
-    EditTour,
-    ClientDetails,
-    AllClients,
-    CreateClient,
-    EditClient,
-    AllReservations,
-    ReservationDetails,
-    CreateReservation,
-    EditReservation
+    EditProperty,
 } from "pages";
 
 const axiosInstance = axios.create();
@@ -134,7 +126,7 @@ function App() {
 
     return (
         <ColorModeContextProvider>
-            
+            <GitHubBanner />
             <CssBaseline />
             <GlobalStyles styles={{ html: { WebkitFontSmoothing: "auto" } }} />
             <RefineSnackbarProvider>
@@ -145,28 +137,12 @@ function App() {
                     catchAll={<ErrorComponent />}
                     resources={[
                         {
-                            name: "tours",
-                            list: AllTours,
-                            show: TourDetails,
-                            create: CreateTour,
-                            edit: EditTour,
-                            icon: <SailingOutlined />,
-                        },
-                        {
-                            name: "clients",
-                            list: AllClients,
-                            show: ClientDetails,
-                            create: CreateClient,
-                            edit: EditClient,
-                            icon: <PeopleAltOutlined  />,
-                        },
-                        {
-                            name: "reservations",
-                            list: AllReservations,
-                            show: ReservationDetails,
-                            create: CreateReservation,
-                            edit: EditReservation,
-                            icon: <ReceiptLongOutlined />,
+                            name: "properties",
+                            list: AllProperties,
+                            show: PropertyDetails,
+                            create: CreateProperty,
+                            edit: EditProperty,
+                            icon: <VillaOutlined />,
                         },
                         {
                             name: "agents",
@@ -180,13 +156,13 @@ function App() {
                             icon: <StarOutlineRounded />,
                         },
                         {
-                            name: "mensagens",
+                            name: "messages",
                             list: Home,
                             icon: <ChatBubbleOutline />,
                         },
                         {
                             name: "my-profile",
-                            options: { label: "Meu Perfil " },
+                            options: { label: "My Profile " },
                             list: MyProfile,
                             icon: <AccountCircleOutlined />,
                         },

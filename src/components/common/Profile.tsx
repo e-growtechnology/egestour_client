@@ -5,8 +5,8 @@ import Box from "@mui/material/Box";
 import Stack from "@mui/material/Stack";
 import Typography from "@mui/material/Typography";
 
-import { ProfileProps, TourProps } from "interfaces/common";
-import TourCard from "./TourCard";
+import { ProfileProps, PropertyProps } from "interfaces/common";
+import PropertyCard from "./PropertyCard";
 
 function checkImage(url: any) {
     const img = new Image();
@@ -14,10 +14,10 @@ function checkImage(url: any) {
     return img.width !== 0 && img.height !== 0;
 }
 
-const Profile = ({ type, name, avatar, email, tours }: ProfileProps) => (
+const Profile = ({ type, name, avatar, email, properties }: ProfileProps) => (
     <Box>
         <Typography fontSize={25} fontWeight={700} color="#11142D">
-            {type} Perfil
+            {type} Profile
         </Typography>
 
         <Box mt="20px" borderRadius="15px" padding="20px" bgcolor="#FCFCFC">
@@ -76,7 +76,7 @@ const Profile = ({ type, name, avatar, email, tours }: ProfileProps) => (
                                     {name}
                                 </Typography>
                                 <Typography fontSize={16} color="#808191">
-                                    Agente
+                                    Realestate Agent
                                 </Typography>
                             </Stack>
 
@@ -87,7 +87,7 @@ const Profile = ({ type, name, avatar, email, tours }: ProfileProps) => (
                                         fontWeight={500}
                                         color="#808191"
                                     >
-                                        Localização
+                                        Address
                                     </Typography>
                                     <Box
                                         display="flex"
@@ -100,7 +100,8 @@ const Profile = ({ type, name, avatar, email, tours }: ProfileProps) => (
                                             fontSize={14}
                                             color="#11142D"
                                         >
-                                            Arraial do Cabo, RJ
+                                            4517 Washington Ave. Manchaster,
+                                            Kentucky 39495
                                         </Typography>
                                     </Box>
                                 </Stack>
@@ -117,7 +118,7 @@ const Profile = ({ type, name, avatar, email, tours }: ProfileProps) => (
                                             fontWeight={500}
                                             color="#808191"
                                         >
-                                            Contato
+                                            Phone Number
                                         </Typography>
                                         <Box
                                             display="flex"
@@ -131,7 +132,7 @@ const Profile = ({ type, name, avatar, email, tours }: ProfileProps) => (
                                                 color="#11142D"
                                                 noWrap
                                             >
-                                                22 99999-9999
+                                                +0123 456 7890
                                             </Typography>
                                         </Box>
                                     </Stack>
@@ -167,10 +168,10 @@ const Profile = ({ type, name, avatar, email, tours }: ProfileProps) => (
             </Box>
         </Box>
 
-        {tours.length > 0 && (
+        {properties.length > 0 && (
             <Box mt={2.5} borderRadius="15px" padding="20px" bgcolor="#FCFCFC">
                 <Typography fontSize={18} fontWeight={600} color="#11142D">
-                    {type} Tours
+                    {type} Properties
                 </Typography>
 
                 <Box
@@ -181,14 +182,14 @@ const Profile = ({ type, name, avatar, email, tours }: ProfileProps) => (
                         gap: 2.5,
                     }}
                 >
-                    {tours?.map((tour: TourProps) => (
-                        <TourCard
-                            key={tour._id}
-                            id={tour._id}
-                            title={tour.title}
-                            location={tour.location}
-                            price={tour.price}
-                            photo={tour.photo}
+                    {properties?.map((property: PropertyProps) => (
+                        <PropertyCard
+                            key={property._id}
+                            id={property._id}
+                            title={property.title}
+                            location={property.location}
+                            price={property.price}
+                            photo={property.photo}
                         />
                     ))}
                 </Box>

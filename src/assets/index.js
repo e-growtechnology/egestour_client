@@ -1,4 +1,4 @@
 import logo from "./logo.svg";
-import whitelogo from "./whitelogo.svg";
+import yariga from "./yariga.svg";
 
-export { logo, whitelogo };
+export { logo, yariga };

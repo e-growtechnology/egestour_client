@@ -7,20 +7,19 @@ import CardMedia from "@mui/material/CardMedia";
 import CardContent from "@mui/material/CardContent";
 import Stack from "@mui/material/Stack";
 
-import { ClientCardProps } from "interfaces/client";
+import { PropertyCardProps } from "interfaces/property";
 
-const ClientCard = ({
+const PropertyCard = ({
     id,
-    name,
-    email,
-    phone,
-    origin,
-    preferences,
-}: ClientCardProps) => {
+    title,
+    location,
+    price,
+    photo,
+}: PropertyCardProps) => {
     return (
         <Card
             component={Link}
-            to={`/client/show/${id}`}
+            to={`/properties/show/${id}`}
             sx={{
                 maxWidth: "330px",
                 padding: "10px",
@@ -31,6 +30,14 @@ const ClientCard = ({
             }}
             elevation={0}
         >
+            <CardMedia
+                component="img"
+                width="100%"
+                height={210}
+                image={photo}
+                alt="card image"
+                sx={{ borderRadius: "10px" }}
+            />
             <CardContent
                 sx={{
                     display: "flex",
@@ -42,7 +49,7 @@ const ClientCard = ({
             >
                 <Stack direction="column" gap={1}>
                     <Typography fontSize={16} fontWeight={500} color="#11142d">
-                        {name}
+                        {title}
                     </Typography>
                     <Stack direction="row" gap={0.5} alignItems="flex-start">
                         <Place
@@ -53,7 +60,7 @@ const ClientCard = ({
                             }}
                         />
                         <Typography fontSize={14} color="#808191">
-                            {email}
+                            {location}
                         </Typography>
                     </Stack>
                 </Stack>
@@ -65,18 +72,7 @@ const ClientCard = ({
                     height="fit-content"
                 >
                     <Typography fontSize={12} fontWeight={600} color="#475be8">
-                        {phone}
-                    </Typography>
-                </Box>
-                <Box
-                    px={1.5}
-                    py={0.5}
-                    borderRadius={1}
-                    bgcolor="#dadefa"
-                    height="fit-content"
-                >
-                    <Typography fontSize={12} fontWeight={600} color="#475be8">
-                        {origin}
+                        ${price}
                     </Typography>
                 </Box>
             </CardContent>
@@ -84,4 +80,4 @@ const ClientCard = ({
     );
 };
 
-export default ClientCard;
+export default PropertyCard;

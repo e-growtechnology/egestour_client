@@ -13,8 +13,8 @@ const MyProfile = () => {
 
     const myProfile = data?.data ?? [];
 
-    if (isLoading) return <div>Carregando...</div>;
-    if (isError) return <div>erro...</div>;
+    if (isLoading) return <div>loading...</div>;
+    if (isError) return <div>error...</div>;
 
     return (
         <Profile
@@ -22,7 +22,7 @@ const MyProfile = () => {
             name={myProfile.name}
             email={myProfile.email}
             avatar={myProfile.avatar}
-            tours={myProfile.allTours}
+            properties={myProfile.allProperties}
         />
     );
 };
